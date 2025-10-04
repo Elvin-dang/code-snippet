@@ -59,7 +59,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        console.log("User in JWT callback:", user);
         token.id = user.id;
         token.username = user.username;
       }
@@ -67,7 +66,6 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        console.log(session.user, token);
         session.user.id = token.id as string;
         session.user.username = token.username as string;
       }
@@ -81,5 +79,5 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXT_AUTH_SECRET || "development-secret-key",
+  secret: process.env.NEXTAUTH_SECRET || "development-secret-key",
 };

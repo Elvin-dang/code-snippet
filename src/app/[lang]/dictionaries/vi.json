@@ -1,4 +1,63 @@
 {
+  "login": {
+    "title": "Đăng nhập vào tài khoản",
+    "description": "Nhập email của bạn bên dưới để đăng nhập",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "mail@example.com"
+      },
+      "password": {
+        "label": "Mật khẩu",
+        "placeholder": "Nhập mật khẩu của bạn"
+      }
+    },
+    "actions": {
+      "submit": "Đăng nhập",
+      "signup": "Đăng ký",
+      "dontHaveAccount": "Bạn chưa có tài khoản?"
+    }
+  },
+  "signup": {
+    "title": "Tạo tài khoản",
+    "description": "Điền vào biểu mẫu bên dưới để tạo tài khoản của bạn",
+    "fields": {
+      "name": {
+        "label": "Họ và tên",
+        "placeholder": "Nguyễn Văn A",
+        "error": "Tên phải có ít nhất 2 ký tự"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "mail@example.com",
+        "description": "Chúng tôi sẽ sử dụng để liên hệ với bạn. Chúng tôi sẽ không chia sẻ email của bạn với bất kỳ ai khác.",
+        "error": "Địa chỉ email không hợp lệ"
+      },
+      "password": {
+        "label": "Mật khẩu",
+        "description": "Phải có ít nhất 6 ký tự.",
+        "error": "Mật khẩu phải có ít nhất 6 ký tự"
+      },
+      "confirmPassword": {
+        "label": "Xác nhận mật khẩu",
+        "error": "Mật khẩu phải có ít nhất 6 ký tự",
+        "errorUnmatched": "Mật khẩu xác nhận không khớp"
+      }
+    },
+    "actions": {
+      "submit": "Tạo tài khoản",
+      "login": "Đăng nhập",
+      "haveAccount": "Bạn đã có tài khoản?"
+    },
+    "common": {
+      "error": {
+        "USER_EXISTS": "Người dùng đã tồn tại",
+        "MISSING_FIELDS": "Thiếu trường dữ liệu",
+        "SERVER_ERROR": "Lỗi máy chủ, vui lòng thử lại sau"
+      },
+      "success": "Tài khoản đã được tạo thành công"
+    }
+  },
   "products": {
     "cart": "Thêm vào giỏ hàng"
   }

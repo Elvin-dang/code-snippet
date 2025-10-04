@@ -1,4 +1,63 @@
 {
+  "login": {
+    "title": "Login to your account",
+    "description": "Enter your email below to login to your account",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "mail@example.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+    "actions": {
+      "submit": "Login",
+      "signup": "Sign Up",
+      "dontHaveAccount": "Don't have an account?"
+    }
+  },
+  "signup": {
+    "title": "Create an Account",
+    "description": "Fill in the form below to create your account",
+    "fields": {
+      "name": {
+        "label": "Full name",
+        "placeholder": "John Doe",
+        "error": "Name must be at least 2 characters long"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "mail@example.com",
+        "description": "We'll use this to contact you. We will not share your email with anyone else.",
+        "error": "Invalid email address"
+      },
+      "password": {
+        "label": "Password",
+        "description": "Must be at least 6 characters long.",
+        "error": "Password must be at least 6 characters long"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "error": "Password must be at least 6 characters long",
+        "errorUnmatched": "Passwords do not match"
+      }
+    },
+    "actions": {
+      "submit": "Create Account",
+      "login": "Login",
+      "haveAccount": "Already have an account?"
+    },
+    "common": {
+      "error": {
+        "USER_EXISTS": "User already exists",
+        "MISSING_FIELDS": "Missing fields",
+        "SERVER_ERROR": "Server error, please try again later"
+      },
+      "success": "Account created successfully"
+    }
+  },
   "products": {
     "cart": "Add to Cart"
   },

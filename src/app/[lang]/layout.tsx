@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { NextAuthProvider } from "@/components/providers/next-auth-provider";
 
-const poppins = Poppins({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +32,12 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang={(await params).lang}>
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <NextAuthProvider>
+          {children}
+          <Toaster />
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }

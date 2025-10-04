@@ -1,7 +1,6 @@
-import { getDictionary } from "./dictionaries";
+"use client";
+import { signOut } from "next-auth/react";
 
-export default async function Page({ params }: { params: Promise<{ lang: "en" | "vi" }> }) {
-  const { lang } = await params;
-  const dict = await getDictionary(lang); // en
-  return <button>{dict.products.cart}</button>; // Add to Cart
+export default function Page() {
+  return <button onClick={() => signOut()}>Sign out</button>;
 }
