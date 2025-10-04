@@ -1,0 +1,112 @@
+{
+  "products": {
+    "cart": "Add to Cart"
+  },
+  "nav": {
+    "explore": "Explore",
+    "tags": "Tags",
+    "newSnippet": "New Snippet",
+    "myProfile": "My Profile",
+    "mySnippets": "My Snippets",
+    "logout": "Logout",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "home": {
+    "title": "Share Code Snippets with",
+    "titleHighlight": "Developers Worldwide",
+    "subtitle": "A platform to share, discover, and analyze code snippets. Get instant time complexity estimates and organize with tags.",
+    "getStarted": "Get Started",
+    "exploreSnippets": "Explore Snippets",
+    "featuresTitle": "Features",
+    "codeSnippets": "Code Snippets",
+    "codeSnippetsDesc": "Create, edit, and share code snippets with syntax highlighting",
+    "smartTagging": "Smart Tagging",
+    "smartTaggingDesc": "Organize snippets by language and topic with shareable tag pages",
+    "userProfiles": "User Profiles",
+    "userProfilesDesc": "Public profiles showcasing your shared snippets and contributions",
+    "complexityAnalysis": "Complexity Analysis",
+    "complexityAnalysisDesc": "Get instant time complexity estimates for your algorithms",
+    "ctaTitle": "Ready to share your code?",
+    "ctaSubtitle": "Join our community of developers and start sharing your best code snippets today.",
+    "createAccount": "Create Free Account"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "loginSubtitle": "Login to your account to continue",
+    "createAccount": "Create an account",
+    "signupSubtitle": "Sign up to start sharing code snippets",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "signupButton": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loading": "Loading..."
+  },
+  "snippets": {
+    "exploreTitle": "Explore Snippets",
+    "exploreSubtitle": "Discover code snippets shared by the community",
+    "search": "Search snippets...",
+    "filterLanguage": "Filter by language",
+    "allLanguages": "All Languages",
+    "noSnippets": "No snippets found. Be the first to share one!",
+    "createNew": "Create New Snippet",
+    "createSubtitle": "Share your code with the community",
+    "editSnippet": "Edit Snippet",
+    "editSubtitle": "Update your code snippet",
+    "title": "Title",
+    "description": "Description",
+    "language": "Language",
+    "code": "Code",
+    "tags": "Tags (comma-separated)",
+    "tagsHelp": "Separate tags with commas",
+    "createButton": "Create Snippet",
+    "updateButton": "Update Snippet",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure?",
+    "deleteMessage": "This action cannot be undone. This will permanently delete your snippet.",
+    "snippetNotFound": "Snippet not found",
+    "backToSnippets": "Back to Snippets",
+    "by": "by",
+    "complexity": "Complexity",
+    "copied": "Copied!",
+    "copiedDesc": "Code copied to clipboard",
+    "copy": "Copy"
+  },
+  "profile": {
+    "joined": "Joined",
+    "snippetsCount": "snippet",
+    "snippetsCountPlural": "snippets",
+    "snippetsBy": "Snippets by",
+    "userNotFound": "User not found",
+    "userNotFoundDesc": "This user doesn't exist or hasn't shared any snippets yet.",
+    "browseSnippets": "Browse Snippets",
+    "noSnippets": "No snippets yet"
+  },
+  "tags": {
+    "browseTitle": "Browse by Tags",
+    "browseSubtitle": "Explore code snippets organized by topics and categories",
+    "noTags": "No tags yet. Create a snippet to get started!",
+    "allTags": "All Tags",
+    "taggedWith": "tagged with",
+    "noSnippetsWithTag": "No snippets found with this tag"
+  },
+  "complexity": {
+    "analysis": "Time Complexity Analysis",
+    "automatic": "Automatic estimation based on code patterns",
+    "highConfidence": "High confidence",
+    "mediumConfidence": "Medium confidence",
+    "lowConfidence": "Low confidence",
+    "detectedPatterns": "Detected patterns:"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success!"
+  }
+}
