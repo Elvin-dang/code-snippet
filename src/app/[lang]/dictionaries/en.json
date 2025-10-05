@@ -1,15 +1,21 @@
 {
+  "language": {
+    "en": "English",
+    "vi": "Vietnamese"
+  },
   "login": {
     "title": "Login to your account",
     "description": "Enter your email below to login to your account",
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "mail@example.com"
+        "placeholder": "mail@example.com",
+        "error": "Invalid email address"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Enter your password"
+        "placeholder": "Enter your password",
+        "error": "Password must be at least 6 characters long"
       }
     },
     "actions": {
@@ -57,9 +63,6 @@
       },
       "success": "Account created successfully"
     }
-  },
-  "products": {
-    "cart": "Add to Cart"
   },
   "nav": {
     "explore": "Explore",

@@ -1,15 +1,21 @@
 {
+  "language": {
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt"
+  },
   "login": {
     "title": "Đăng nhập vào tài khoản",
     "description": "Nhập email của bạn bên dưới để đăng nhập",
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "mail@example.com"
+        "placeholder": "mail@example.com",
+        "error": "Địa chỉ email không hợp lệ"
       },
       "password": {
         "label": "Mật khẩu",
-        "placeholder": "Nhập mật khẩu của bạn"
+        "placeholder": "Nhập mật khẩu của bạn",
+        "error": "Mật khẩu phải có ít nhất 6 ký tự"
       }
     },
     "actions": {
@@ -58,7 +64,14 @@
       "success": "Tài khoản đã được tạo thành công"
     }
   },
-  "products": {
-    "cart": "Thêm vào giỏ hàng"
+  "nav": {
+    "explore": "Khám Phá",
+    "tags": "Tags",
+    "newSnippet": "Tạo Snippet Mới",
+    "myProfile": "Hồ sơ",
+    "mySnippets": "Snippet của tôi",
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký"
   }
 }

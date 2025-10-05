@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Field, FieldDescription } from "@/components/ui/field";
+import { Field, FieldDescription, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -93,73 +93,75 @@ export function SignupForm({
         className={cn("flex flex-col gap-6", className)}
         {...props}
       >
-        <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">{dict.signup.title}</h1>
-          <p className="text-muted-foreground text-xs text-balance">{dict.signup.description}</p>
-        </div>
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{dict.signup.fields.name.label}</FormLabel>
-              <FormControl>
-                <Input placeholder={dict.signup.fields.name.placeholder} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{dict.signup.fields.email.label}</FormLabel>
-              <FormControl>
-                <Input placeholder={dict.signup.fields.email.placeholder} {...field} />
-              </FormControl>
-              <FormDescription>{dict.signup.fields.email.description}</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{dict.signup.fields.password.label}</FormLabel>
-              <FormControl>
-                <Input {...field} type="password" />
-              </FormControl>
-              <FormDescription>{dict.signup.fields.password.description}</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{dict.signup.fields.confirmPassword.label}</FormLabel>
-              <FormControl>
-                <Input {...field} type="password" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" disabled={loading}>
-          {loading && <Spinner />}
-          {dict.signup.actions.submit}
-        </Button>
-        <Field>
-          <FieldDescription className="px-6 text-center">
-            {dict.signup.actions.haveAccount} <a href="/login">{dict.signup.actions.login}</a>
-          </FieldDescription>
-        </Field>
+        <FieldGroup>
+          <div className="flex flex-col items-center gap-1 text-center">
+            <h1 className="text-2xl font-bold">{dict.signup.title}</h1>
+            <p className="text-muted-foreground text-xs text-balance">{dict.signup.description}</p>
+          </div>
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{dict.signup.fields.name.label}</FormLabel>
+                <FormControl>
+                  <Input placeholder={dict.signup.fields.name.placeholder} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{dict.signup.fields.email.label}</FormLabel>
+                <FormControl>
+                  <Input placeholder={dict.signup.fields.email.placeholder} {...field} />
+                </FormControl>
+                <FormDescription>{dict.signup.fields.email.description}</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{dict.signup.fields.password.label}</FormLabel>
+                <FormControl>
+                  <Input {...field} type="password" />
+                </FormControl>
+                <FormDescription>{dict.signup.fields.password.description}</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{dict.signup.fields.confirmPassword.label}</FormLabel>
+                <FormControl>
+                  <Input {...field} type="password" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" disabled={loading}>
+            {loading && <Spinner />}
+            {dict.signup.actions.submit}
+          </Button>
+          <Field>
+            <FieldDescription className="px-6 text-center">
+              {dict.signup.actions.haveAccount} <a href="/login">{dict.signup.actions.login}</a>
+            </FieldDescription>
+          </Field>
+        </FieldGroup>
       </form>
     </Form>
   );

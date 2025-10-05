@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { getToken } from "next-auth/jwt";
+import { locales, defaultLocale, detectLocale } from "@/lib/utils";
 
 const publicRoutes = ["/login", "/signup"];
 const nonLocaleRoutes = ["/api", "/trpc"];
-const locales = ["en", "vi"];
-const defaultLocale = "en";
 
 function getLocale(request: Request) {
   const headers: Record<string, string> = {};
@@ -27,11 +26,6 @@ const isPublicRoute = (pathname: string) => {
   return publicRoutes.some((route) => pathWithoutLocale.startsWith(route));
 };
 
-function detectLocale(path: string) {
-  const found = locales.find((l) => path.startsWith(`/${l}`));
-  return found || defaultLocale;
-}
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -42,7 +36,9 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!token && !isPublicRoute(pathname)) {
-    return NextResponse.redirect(new URL(`/${detectLocale(pathname)}/login`, request.url));
+    return NextResponse.redirect(
+      new URL(`/${detectLocale(pathname, locales, defaultLocale)}/login`, request.url)
+    );
   }
 
   if (nonLocaleRoutes.some((route) => pathname.startsWith(route))) {
@@ -54,6 +50,12 @@ export async function middleware(request: NextRequest) {
   );
 
   if (pathnameHasLocale) return;
+
+  const cookieLang = request.cookies.get("lang")?.value;
+
+  if (cookieLang && locales.includes(cookieLang) && !pathnameHasLocale) {
+    return NextResponse.redirect(new URL(`/${cookieLang}${pathname}`, request.url));
+  }
 
   const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
