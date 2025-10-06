@@ -55,16 +55,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "vi" }];
-}
-
-export default async function RootLayout({
+export default async function Layout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: "en" | "vi" }>;
+  params: Promise<{ lang: string }>;
 }>) {
   return (
     <html lang={(await params).lang}>
