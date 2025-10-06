@@ -226,12 +226,16 @@
       "success": "Snippet đã được cập nhật thành công"
     }
   },
-  "notFound": {
-    "message": "Không tìm thấy đoạn mã hoặc bạn không có quyền truy cập",
+  "notFoundSnippet": {
+    "message": "Đoạn mã không tìm thấy hoặc bạn không có quyền truy cập",
     "button": "Trở về đoạn mã"
   },
+  "notFoundTag": {
+    "message": "Thẻ không tìm thấy",
+    "button": "Trở về thẻ"
+  },
   "snippetList": {
-    "title": "Khám phá Snippets",
+    "title": "Khám phá đoạn mã",
     "description": "Khám phá các đoạn mã được chia sẻ bởi cộng đồng",
     "searchPlaceholder": "Tìm kiếm đoạn mã theo tiêu đề, mô tả hoặc thẻ...",
     "noSnippets": "Không tìm thấy đoạn mã nào. Hãy là người đầu tiên chia sẻ!",

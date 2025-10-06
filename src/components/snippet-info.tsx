@@ -114,10 +114,9 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
     );
   }
 
-  const link =
-    process.env.NODE_ENV === "production"
-      ? `https://${process.env.NEXT_PUBLIC_URL}/snippets/${id}`
-      : `http://${process.env.NEXT_PUBLIC_URL}/snippets/${id}`;
+  const link = process.env.NEXT_PUBLIC_BASE_URL
+    ? `${process.env.NEXT_PUBLIC_BASE_URL}/snippets/${id}`
+    : `http://localhost:3000/snippets/${id}`;
 
   const handleCopyRoomLink = () => {
     navigator.clipboard.writeText(link);

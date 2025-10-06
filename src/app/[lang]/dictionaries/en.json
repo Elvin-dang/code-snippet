@@ -226,9 +226,13 @@
       "success": "Snippet updated successfully"
     }
   },
-  "notFound": {
+  "notFoundSnippet": {
     "message": "Snippet not found or you do not have access to it",
     "button": "Back to Snippets"
+  },
+  "notFoundTag": {
+    "message": "Tag not found or you do not have access to it",
+    "button": "Back to Tags"
   },
   "snippetList": {
     "title": "Explore Snippets",

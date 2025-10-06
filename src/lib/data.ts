@@ -5,3 +5,8 @@ export const getSnippet = cache(async (id: string) => {
   const res = await prisma.snippet.findFirst({ where: { id } });
   return res;
 });
+
+export const getTag = cache(async (slug: string) => {
+  const res = await prisma.tag.findFirst({ where: { slug } });
+  return res;
+});

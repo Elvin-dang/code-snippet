@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Braces } from "lucide-react";
+import { Tag } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { getDictionary } from "../../dictionaries";
@@ -16,10 +16,10 @@ const NotFound = async () => {
     <div className="container py-8 mx-auto p-4">
       <Card>
         <CardContent className="py-5 text-center">
-          <Braces className="mx-auto h-20 w-20 mb-5 opacity-50" />
-          <p className="text-muted-foreground">{dict.notFoundSnippet.message}</p>
+          <Tag className="mx-auto h-20 w-20 mb-5 opacity-50" />
+          <p className="text-muted-foreground">{dict.notFoundTag.message}</p>
           <Button asChild className="mt-4">
-            <Link href="/snippets">{dict.notFoundSnippet.button}</Link>
+            <Link href="/tags">{dict.notFoundTag.button}</Link>
           </Button>
         </CardContent>
       </Card>

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: snippet?.title,
       description: snippet?.description,
       type: "article",
-      url: `https://codesnip.elvin.dev/snippets/${id}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/snippets/${id}`,
     },
     twitter: {
       card: "summary_large_image",
