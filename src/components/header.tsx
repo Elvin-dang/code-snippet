@@ -15,11 +15,12 @@ import { Code2, User, LogOut, Plus, Menu } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Separator } from "./ui/separator";
+import { useUser } from "./providers/user-provider";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function Header({ dict }: { dict: any }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session, status } = useSession();
-  const user = session?.user;
+  const { user, loading } = useUser();
 
   const handleLogout = async () => {
     await signOut();
@@ -46,7 +47,7 @@ export function Header({ dict }: { dict: any }) {
 
           <LocaleSwitcher dict={dict} />
 
-          {status === "loading" ? (
+          {loading ? (
             <div className="h-9 w-20 animate-pulse bg-muted rounded" />
           ) : user ? (
             <>
@@ -59,7 +60,12 @@ export function Header({ dict }: { dict: any }) {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <User className="h-4 w-4" />
+                    <Avatar className="h-5 w-5">
+                      <AvatarImage src={user.image} />
+                      <AvatarFallback>
+                        <User className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
                     {user.username}
                   </Button>
                 </DropdownMenuTrigger>
@@ -97,7 +103,7 @@ export function Header({ dict }: { dict: any }) {
           <SheetContent side="right" closeButton={false} className="w-[300px] gap-0 md:hidden">
             <SheetHeader className="p-4 px-3">
               <SheetTitle className="flex items-center gap-2 justify-between">
-                {status === "loading" ? (
+                {loading ? (
                   <div className="h-9 w-20 animate-pulse bg-muted rounded" />
                 ) : user ? (
                   <>
@@ -133,7 +139,7 @@ export function Header({ dict }: { dict: any }) {
                 {dict.nav.tags}
               </Link>
 
-              {status === "loading" ? (
+              {loading ? (
                 <div className="h-9 w-20 animate-pulse bg-muted rounded" />
               ) : (
                 user && (
