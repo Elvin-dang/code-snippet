@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
 
   return {
-    metadataBase: new URL(`https://${process.env.VERCEL_URL}` || "http://localhost:3000"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
     alternates: {
       canonical: "/",
     },
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title: "CodeSnippet - Share & Discover Code Snippets",
       description:
         "A platform for developers to share, discover, and analyze code snippets with time complexity estimation.",
-      url: `https://${process.env.VERCEL_URL}` || "http://localhost:3000",
+      url: process.env.NEXT_PUBLIC_SITE_URL,
       siteName: "CodeSnippet",
       locale: lang,
       type: "website",

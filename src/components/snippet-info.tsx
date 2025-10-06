@@ -115,9 +115,7 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
     );
   }
 
-  const link = process.env.VERCEL_URL
-    ? `${process.env.VERCEL_URL}/snippets/${id}`
-    : `http://localhost:3000/snippets/${id}`;
+  const link = `${process.env.NEXT_PUBLIC_SITE_URL}/snippets/${id}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(link);

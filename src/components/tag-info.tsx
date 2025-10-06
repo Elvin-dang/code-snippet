@@ -50,9 +50,7 @@ export function TagInfo({ dict, lang }: { dict: any; lang: string }) {
     fetchSnippets();
   }, [slug, page]);
 
-  const link = process.env.VERCEL_URL
-    ? `${process.env.VERCEL_URL}/tags/${slug}`
-    : `http://localhost:3000/tags/${slug}`;
+  const link = `${process.env.NEXT_PUBLIC_SITE_URL}/tags/${slug}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(link);
