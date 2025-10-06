@@ -169,7 +169,7 @@ export function SnippetList({ dict, lang }: { dict: any; lang: string }) {
               <SnippetCardSkeleton key={i} />
             ))}
           </div>
-        ) : snippets.length === 0 ? (
+        ) : snippets?.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground">{dict.snippetList.noSnippets}</p>
           </div>

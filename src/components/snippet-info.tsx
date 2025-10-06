@@ -115,13 +115,13 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
     );
   }
 
-  const link = process.env.NEXT_PUBLIC_BASE_URL
-    ? `${process.env.NEXT_PUBLIC_BASE_URL}/snippets/${id}`
+  const link = process.env.VERCEL_URL
+    ? `${process.env.VERCEL_URL}/snippets/${id}`
     : `http://localhost:3000/snippets/${id}`;
 
-  const handleCopyRoomLink = () => {
+  const handleCopyLink = () => {
     navigator.clipboard.writeText(link);
-    toast.success("Room link copied 🎉", {
+    toast.success("Copied 🎉", {
       position: "top-center",
       duration: 2000,
     });
@@ -167,7 +167,7 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
           <div className="flex justify-between flex-1 w-full">
             <h1 className="text-3xl font-bold mb-2">{snippet.title}</h1>
             <div className="flex gap-2 shrink-0">
-              <Button variant="outline" size="sm" onClick={handleCopyRoomLink}>
+              <Button variant="outline" size="sm" onClick={handleCopyLink}>
                 <Share className="h-4 w-4 md:mr-2" />
                 <span className="md:block hidden">{dict.snippet.share}</span>
               </Button>

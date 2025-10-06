@@ -6,7 +6,7 @@ import { SnippetCard } from "@/components/snippet-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Share } from "lucide-react";
 import { useParams } from "next/navigation";
 import { SnippetCardSkeleton } from "@/components/snippet-card-skeleton";
 import {
@@ -18,6 +18,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { toast } from "sonner";
 
 export function TagInfo({ dict, lang }: { dict: any; lang: string }) {
   const { slug } = useParams();
@@ -49,6 +50,18 @@ export function TagInfo({ dict, lang }: { dict: any; lang: string }) {
     fetchSnippets();
   }, [slug, page]);
 
+  const link = process.env.VERCEL_URL
+    ? `${process.env.VERCEL_URL}/tags/${slug}`
+    : `http://localhost:3000/tags/${slug}`;
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(link);
+    toast.success("Copied 🎉", {
+      position: "top-center",
+      duration: 2000,
+    });
+  };
+
   return (
     <div className="container py-8 mx-auto p-4">
       <div className="space-y-6">
@@ -66,6 +79,10 @@ export function TagInfo({ dict, lang }: { dict: any; lang: string }) {
           <Badge variant="secondary" className="text-lg px-3 py-1">
             {slug}
           </Badge>
+          <Button variant="outline" size="sm" onClick={handleCopyLink}>
+            <Share className="h-4 w-4 md:mr-2" />
+            <span className="md:block hidden">{dict.snippet.share}</span>
+          </Button>
         </div>
 
         <p className="text-muted-foreground">
