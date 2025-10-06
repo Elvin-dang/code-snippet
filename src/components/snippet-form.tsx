@@ -36,10 +36,10 @@ import { languages } from "@/lib/utils";
 
 const getFormSchema = (dict: any) =>
   z.object({
-    title: z.string().min(2, "Title needs at least 2 characters").max(100),
-    description: z.string().max(1000, "Description can be up to 1000 characters"),
-    code: z.string().min(1, "Code is required"),
-    language: z.string().min(1, "Language is required"),
+    title: z.string().min(2, dict.newSnippet.fields.title.error).max(100),
+    description: z.string().max(1000, dict.newSnippet.fields.description.error),
+    code: z.string().min(1, dict.newSnippet.fields.code.error),
+    language: z.string().min(1, dict.newSnippet.fields.language.error),
     tags: z.string().optional(),
   });
 
@@ -65,7 +65,7 @@ export function SnippetForm({ dict }: { dict: any }) {
       setIsAnalyzing(true);
 
       const timer = setTimeout(() => {
-        const result = analyzeComplexity(form.getValues("code"));
+        const result = analyzeComplexity(form.getValues("code"), dict);
         setAnalysis(result);
         setIsAnalyzing(false);
       }, 500);
@@ -74,7 +74,7 @@ export function SnippetForm({ dict }: { dict: any }) {
     } else {
       setAnalysis(null);
     }
-  }, [form.watch("code")]);
+  }, [form.watch("code"), dict]);
 
   async function onSubmit({
     title,
@@ -133,9 +133,9 @@ export function SnippetForm({ dict }: { dict: any }) {
           name="title"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Title</FormLabel>
+              <FormLabel>{dict.newSnippet.fields.title.label}</FormLabel>
               <FormControl>
-                <Input placeholder="Quick sort implementation" {...field} />
+                <Input placeholder={dict.newSnippet.fields.title.placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -146,9 +146,9 @@ export function SnippetForm({ dict }: { dict: any }) {
           name="description"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{dict.newSnippet.fields.description.label}</FormLabel>
               <FormControl>
-                <Textarea placeholder="A brief description of what this code does..." {...field} />
+                <Textarea placeholder={dict.newSnippet.fields.description.placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -159,7 +159,7 @@ export function SnippetForm({ dict }: { dict: any }) {
           name="language"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Language</FormLabel>
+              <FormLabel>{dict.newSnippet.fields.language.label}</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
@@ -167,7 +167,7 @@ export function SnippetForm({ dict }: { dict: any }) {
                   defaultValue={field.value}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a language" />
+                    <SelectValue placeholder={dict.newSnippet.fields.language.placeholder} />
                   </SelectTrigger>
                   <SelectContent>
                     {languages.map((lang) => (
@@ -187,9 +187,9 @@ export function SnippetForm({ dict }: { dict: any }) {
           name="code"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Code</FormLabel>
+              <FormLabel>{dict.newSnippet.fields.code.label}</FormLabel>
               <FormControl>
-                <Textarea placeholder="// Your code here..." {...field} />
+                <Textarea placeholder={dict.newSnippet.fields.code.placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -199,13 +199,13 @@ export function SnippetForm({ dict }: { dict: any }) {
           <Card>
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                Time Complexity Analysis
+                {dict.complexity.title}
                 {isAnalyzing && <Loader2 className="h-4 w-4 animate-spin" />}
               </CardTitle>
-              <CardDescription>Automatic estimation based on code patterns</CardDescription>
+              <CardDescription>{dict.complexity.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              {analysis && <ComplexityBadge analysis={analysis} showDetails />}
+              {analysis && <ComplexityBadge analysis={analysis} showDetails dict={dict} />}
             </CardContent>
           </Card>
         )}
@@ -214,11 +214,11 @@ export function SnippetForm({ dict }: { dict: any }) {
           name="tags"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Tags (comma-separated)</FormLabel>
+              <FormLabel>{dict.newSnippet.fields.tags.label}</FormLabel>
               <FormControl>
-                <Input placeholder="algorithm, sorting, recursion" {...field} />
+                <Input placeholder={dict.newSnippet.fields.tags.placeholder} {...field} />
               </FormControl>
-              <FormDescription>Separate tags with commas</FormDescription>
+              <FormDescription>{dict.newSnippet.fields.tags.description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -226,10 +226,10 @@ export function SnippetForm({ dict }: { dict: any }) {
         <div className="flex gap-4">
           <Button type="submit" disabled={loading}>
             {loading && <Spinner />}
-            Create Snippet
+            {dict.newSnippet.actions.submit}
           </Button>
           <Button type="button" variant="outline" onClick={() => router.back()} disabled={loading}>
-            Cancel
+            {dict.newSnippet.actions.cancel}
           </Button>
         </div>
       </form>

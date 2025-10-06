@@ -5,11 +5,11 @@ export interface ComplexityAnalysis {
   patterns: string[];
 }
 
-export function analyzeComplexity(code: string): ComplexityAnalysis {
+export function analyzeComplexity(code: string, dict: any): ComplexityAnalysis {
   const patterns: string[] = [];
   let complexity = "O(1)";
   let confidence: "high" | "medium" | "low" = "medium";
-  let explanation = "Constant time - no loops or recursion detected";
+  let explanation = dict.complexity.constant_time;
 
   // Normalize code for analysis
   const normalizedCode = code.toLowerCase();
@@ -30,14 +30,14 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     const nestingDepth = countMaxNestingDepth(normalizedCode);
     if (nestingDepth >= 3) {
       complexity = "O(n³)";
-      explanation = "Cubic time - three or more nested loops detected";
-      patterns.push("Triple nested loops");
+      explanation = dict.complexity.triple_nested_loops_cubic;
+      patterns.push(dict.complexity.patterns.triple_nested);
     } else {
       complexity = "O(n²)";
-      explanation = "Quadratic time - nested loops detected";
-      patterns.push("Nested loops");
+      explanation = dict.complexity.nested_loops_quadratic;
+      patterns.push(dict.complexity.patterns.nested);
     }
-    confidence = "high";
+    confidence = dict.complexity.confidence["high"];
   }
   // Check for sorting algorithms
   else if (
@@ -47,9 +47,9 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     normalizedCode.includes("heapsort")
   ) {
     complexity = "O(n log n)";
-    explanation = "Linearithmic time - sorting operation detected";
-    patterns.push("Sorting algorithm");
-    confidence = "high";
+    explanation = dict.complexity.sorting_operation;
+    patterns.push(dict.complexity.patterns.sorting);
+    confidence = dict.complexity.confidence["high"];
   }
   // Check for recursion with divide and conquer
   else if (
@@ -59,9 +59,9 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     (normalizedCode.includes("recursion") && normalizedCode.includes("/2"))
   ) {
     complexity = "O(log n)";
-    explanation = "Logarithmic time - divide and conquer or binary search pattern detected";
-    patterns.push("Divide and conquer");
-    confidence = "medium";
+    explanation = dict.complexity.divide_and_conquer;
+    patterns.push(dict.complexity.patterns.divide_conquer);
+    confidence = dict.complexity.confidence["medium"];
   }
   // Check for single loop
   else if (
@@ -75,9 +75,9 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     normalizedCode.includes("for(")
   ) {
     complexity = "O(n)";
-    explanation = "Linear time - single loop or iteration detected";
-    patterns.push("Single loop/iteration");
-    confidence = "high";
+    explanation = dict.complexity.single_loop;
+    patterns.push(dict.complexity.patterns.single_loop);
+    confidence = dict.complexity.confidence["high"];
   }
   // Check for recursion (general case)
   else if (
@@ -85,9 +85,9 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     normalizedCode.includes("recursive")
   ) {
     complexity = "O(n)";
-    explanation = "Linear time - recursive function detected";
-    patterns.push("Recursion");
-    confidence = "low";
+    explanation = dict.complexity.recursion_detected;
+    patterns.push(dict.complexity.patterns.recursion);
+    confidence = dict.complexity.confidence["low"];
   }
 
   // Additional pattern detection
@@ -96,15 +96,15 @@ export function analyzeComplexity(code: string): ComplexityAnalysis {
     normalizedCode.includes("map") ||
     normalizedCode.includes("set")
   ) {
-    patterns.push("Hash-based data structure");
+    patterns.push(dict.complexity.patterns.hash_structure);
   }
 
   if (normalizedCode.includes("binary") && normalizedCode.includes("tree")) {
-    patterns.push("Binary tree operations");
+    patterns.push(dict.complexity.patterns.binary_tree);
   }
 
   if (patterns.length === 0) {
-    patterns.push("No significant patterns detected");
+    patterns.push(dict.complexity.patterns.none);
   }
 
   return {

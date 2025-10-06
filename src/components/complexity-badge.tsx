@@ -5,9 +5,10 @@ import type { ComplexityAnalysis } from "@/lib/complexity-analyzer";
 interface ComplexityBadgeProps {
   analysis: ComplexityAnalysis;
   showDetails?: boolean;
+  dict?: any;
 }
 
-export function ComplexityBadge({ analysis, showDetails = false }: ComplexityBadgeProps) {
+export function ComplexityBadge({ analysis, showDetails = false, dict }: ComplexityBadgeProps) {
   const getComplexityColor = (complexity: string) => {
     if (complexity === "O(1)")
       return "bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20";
@@ -19,7 +20,12 @@ export function ComplexityBadge({ analysis, showDetails = false }: ComplexityBad
   };
 
   const getConfidenceText = (confidence: string) => {
-    return confidence.charAt(0).toUpperCase() + confidence.slice(1) + " confidence";
+    return (
+      confidence.charAt(0).toUpperCase() +
+      confidence.slice(1) +
+      " " +
+      dict.complexity.confidenceText
+    );
   };
 
   if (!showDetails) {
@@ -55,7 +61,7 @@ export function ComplexityBadge({ analysis, showDetails = false }: ComplexityBad
       <p className="text-sm">{analysis.explanation}</p>
       {analysis.patterns.length > 0 && (
         <div className="text-sm">
-          <p className="text-muted-foreground mb-1">Detected patterns:</p>
+          <p className="text-muted-foreground mb-1">{dict.complexity.detectedPatterns}:</p>
           <ul className="list-disc list-inside space-y-1">
             {analysis.patterns.map((pattern, i) => (
               <li key={i} className="text-muted-foreground">

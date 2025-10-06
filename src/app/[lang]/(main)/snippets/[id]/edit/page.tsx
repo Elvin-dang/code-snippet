@@ -44,8 +44,8 @@ export default async function EditSnippetPage({
     <div className="container p-4 max-w-4xl mx-auto">
       <Card>
         <CardHeader>
-          <CardTitle>Edit Snippet</CardTitle>
-          <CardDescription>Update your code snippet</CardDescription>
+          <CardTitle>{dict.updateSnippet.title}</CardTitle>
+          <CardDescription>{dict.updateSnippet.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <SnippetFormUpdate

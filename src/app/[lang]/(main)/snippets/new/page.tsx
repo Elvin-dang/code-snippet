@@ -14,8 +14,8 @@ export default async function NewSnippetPage({
     <div className="container p-4 max-w-4xl mx-auto">
       <Card>
         <CardHeader>
-          <CardTitle>Create New Snippet</CardTitle>
-          <CardDescription>Share your code with the community</CardDescription>
+          <CardTitle>{dict.newSnippet.title}</CardTitle>
+          <CardDescription>{dict.newSnippet.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <SnippetForm dict={dict} />

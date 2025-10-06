@@ -65,7 +65,7 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
       setIsAnalyzing(true);
 
       const timer = setTimeout(() => {
-        const result = analyzeComplexity(form.getValues("code"));
+        const result = analyzeComplexity(form.getValues("code"), dict);
         setAnalysis(result);
         setIsAnalyzing(false);
       }, 500);
@@ -74,7 +74,7 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
     } else {
       setAnalysis(null);
     }
-  }, [form.watch("code")]);
+  }, [form.watch("code"), dict]);
 
   async function onSubmit({
     title,
@@ -133,9 +133,9 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           name="title"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Title</FormLabel>
+              <FormLabel>{dict.updateSnippet.fields.title.label}</FormLabel>
               <FormControl>
-                <Input placeholder="Quick sort implementation" {...field} />
+                <Input placeholder={dict.updateSnippet.fields.title.placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -146,9 +146,12 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           name="description"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{dict.updateSnippet.fields.description.label}</FormLabel>
               <FormControl>
-                <Textarea placeholder="A brief description of what this code does..." {...field} />
+                <Textarea
+                  placeholder={dict.updateSnippet.fields.description.placeholder}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -159,7 +162,7 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           name="language"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Language</FormLabel>
+              <FormLabel>{dict.updateSnippet.fields.language.label}</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
@@ -167,7 +170,7 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
                   defaultValue={field.value}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a language" />
+                    <SelectValue placeholder={dict.updateSnippet.fields.language.placeholder} />
                   </SelectTrigger>
                   <SelectContent>
                     {languages.map((lang) => (
@@ -187,9 +190,9 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           name="code"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Code</FormLabel>
+              <FormLabel>{dict.updateSnippet.fields.code.label}</FormLabel>
               <FormControl>
-                <Textarea placeholder="// Your code here..." {...field} />
+                <Textarea placeholder={dict.updateSnippet.fields.code.placeholder} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -199,13 +202,13 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           <Card>
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                Time Complexity Analysis
+                {dict.complexity.title}
                 {isAnalyzing && <Loader2 className="h-4 w-4 animate-spin" />}
               </CardTitle>
-              <CardDescription>Automatic estimation based on code patterns</CardDescription>
+              <CardDescription>{dict.complexity.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              {analysis && <ComplexityBadge analysis={analysis} showDetails />}
+              {analysis && <ComplexityBadge analysis={analysis} showDetails dict={dict} />}
             </CardContent>
           </Card>
         )}
@@ -214,11 +217,11 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
           name="tags"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Tags (comma-separated)</FormLabel>
+              <FormLabel>{dict.updateSnippet.fields.tags.label}</FormLabel>
               <FormControl>
-                <Input placeholder="algorithm, sorting, recursion" {...field} />
+                <Input placeholder={dict.updateSnippet.fields.tags.placeholder} {...field} />
               </FormControl>
-              <FormDescription>Separate tags with commas</FormDescription>
+              <FormDescription>{dict.updateSnippet.fields.tags.description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -226,10 +229,10 @@ export function SnippetFormUpdate({ dict, snippet }: { dict: any; snippet: any }
         <div className="flex gap-4">
           <Button type="submit" disabled={loading}>
             {loading && <Spinner />}
-            Update Snippet
+            {dict.updateSnippet.actions.submit}
           </Button>
           <Button type="button" variant="outline" onClick={() => router.back()} disabled={loading}>
-            Cancel
+            {dict.updateSnippet.actions.cancel}
           </Button>
         </div>
       </form>

@@ -60,6 +60,8 @@ export async function middleware(request: NextRequest) {
     !routeMatches(pathWithoutLocale, privateRoutes) &&
     !routeMatches(pathWithoutLocale, publicRoutes)
   ) {
+    if (token && pathWithoutLocale === "/")
+      return NextResponse.redirect(new URL(`/snippets`, request.url));
     return;
   }
 

@@ -10,9 +10,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Clock, User } from "lucide-react";
 
-export function SnippetCard({ snippet }: { snippet: any }) {
+export function SnippetCard({ snippet, dict, lang }: { snippet: any; dict: any; lang: string }) {
   const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString("en-US", {
+    return new Date(date).toLocaleDateString(lang, {
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -44,7 +44,9 @@ export function SnippetCard({ snippet }: { snippet: any }) {
           {snippet.complexity && (
             <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4" />
-              <span>Complexity: {snippet.complexity}</span>
+              <span>
+                {dict.snippetCard.complexity}: {snippet.complexity}
+              </span>
             </div>
           )}
         </CardContent>

@@ -1,4 +1,23 @@
 {
+  "home": {
+    "title": "Chia sẻ đoạn mã với",
+    "titleHighlight": "Các nhà phát triển trên toàn thế giới",
+    "subtitle": "Nền tảng để chia sẻ, khám phá và phân tích các đoạn mã. Nhận ước tính độ phức tạp thời gian tức thì và sắp xếp bằng thẻ.",
+    "getStarted": "Bắt đầu",
+    "exploreSnippets": "Khám phá đoạn mã",
+    "featuresTitle": "Tính năng",
+    "codeSnippets": "Đoạn mã",
+    "codeSnippetsDesc": "Tạo, chỉnh sửa và chia sẻ đoạn mã",
+    "smartTagging": "Gắn thẻ thông minh",
+    "smartTaggingDesc": "Tổ chức các đoạn mã theo ngôn ngữ và chủ đề với trang thẻ có thể chia sẻ",
+    "userProfiles": "Hồ sơ người dùng",
+    "userProfilesDesc": "Hồ sơ công khai hiển thị các đoạn mã bạn đã chia sẻ và đóng góp",
+    "complexityAnalysis": "Phân tích độ phức tạp",
+    "complexityAnalysisDesc": "Nhận ước tính độ phức tạp thời gian cho thuật toán của bạn ngay lập tức",
+    "ctaTitle": "Sẵn sàng chia sẻ đoạn mã của bạn?",
+    "ctaSubtitle": "Tham gia cộng đồng lập trình viên và bắt đầu chia sẻ những đoạn mã hay nhất của bạn ngay hôm nay.",
+    "createAccount": "Tạo tài khoản miễn phí"
+  },
   "language": {
     "en": "Tiếng Anh",
     "vi": "Tiếng Việt"
@@ -73,5 +92,188 @@
     "logout": "Đăng xuất",
     "login": "Đăng nhập",
     "signup": "Đăng ký"
+  },
+  "complexity": {
+    "title": "Phân Tích Độ Phức Tạp Thời Gian",
+    "description": "Ước tính tự động dựa trên các mẫu mã nguồn",
+    "detectedPatterns": "Mẫu được phát hiện",
+    "confidenceText": "độ tin cậy",
+    "constant_time": "Thời gian hằng - không phát hiện vòng lặp hoặc đệ quy",
+    "nested_loops_quadratic": "Thời gian bậc hai - phát hiện vòng lặp lồng nhau",
+    "triple_nested_loops_cubic": "Thời gian bậc ba - phát hiện ba hoặc nhiều vòng lặp lồng nhau",
+    "sorting_operation": "Thời gian tuyến tính-logarit - phát hiện thao tác sắp xếp",
+    "divide_and_conquer": "Thời gian logarit - phát hiện chia để trị hoặc tìm kiếm nhị phân",
+    "single_loop": "Thời gian tuyến tính - phát hiện một vòng lặp hoặc duyệt qua phần tử",
+    "recursion_detected": "Thời gian tuyến tính - phát hiện hàm đệ quy",
+    "patterns": {
+      "triple_nested": "Ba vòng lặp lồng nhau",
+      "nested": "Vòng lặp lồng nhau",
+      "sorting": "Thuật toán sắp xếp",
+      "divide_conquer": "Chia để trị",
+      "single_loop": "Một vòng lặp hoặc duyệt phần tử",
+      "recursion": "Đệ quy",
+      "hash_structure": "Cấu trúc dữ liệu dựa trên băm",
+      "binary_tree": "Thao tác trên cây nhị phân",
+      "none": "Không phát hiện mẫu đáng chú ý"
+    },
+    "confidence": {
+      "high": "Cao",
+      "medium": "Trung bình",
+      "low": "Thấp"
+    }
+  },
+  "newSnippet": {
+    "title": "Tạo Snippet Mới",
+    "description": "Chia sẻ code của bạn với cộng đồng",
+    "fields": {
+      "title": {
+        "label": "Tiêu đề",
+        "placeholder": "Một tiêu đề ngắn gọn cho snippet của bạn",
+        "error": "Tiêu đề phải có ít nhất 2 ký tự"
+      },
+      "description": {
+        "label": "Mô tả",
+        "placeholder": "Một mô tả ngắn gọn về chức năng của snippet này",
+        "error": "Mô tả có thể dài tối đa 1000 ký tự"
+      },
+      "language": {
+        "label": "Ngôn ngữ",
+        "placeholder": "Chọn một ngôn ngữ",
+        "error": "Ngôn ngữ là bắt buộc"
+      },
+      "code": {
+        "label": "Code",
+        "placeholder": "// Viết code của bạn ở đây",
+        "error": "Code là bắt buộc"
+      },
+      "tags": {
+        "label": "Tags (cách nhau bằng dấu phẩy)",
+        "placeholder": "algorithm, sorting, recursion",
+        "description": "Thêm các thẻ liên quan để giúp người khác tìm thấy snippet của bạn"
+      }
+    },
+    "actions": {
+      "submit": "Tạo Snippet",
+      "cancel": "Hủy"
+    },
+    "common": {
+      "error": {
+        "MISSING_FIELDS": "Thiếu trường dữ liệu",
+        "SERVER_ERROR": "Lỗi máy chủ, vui lòng thử lại sau"
+      },
+      "success": "Snippet đã được tạo thành công"
+    }
+  },
+  "snippet": {
+    "share": "Chia sẻ",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "confirmDeleteTitle": "Xác nhận Xóa",
+    "confirmDeleteMessage": "Bạn có chắc chắn muốn xóa đoạn mã này không? Hành động này không thể hoàn tác.",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "complexity": "Độ phức tạp",
+    "common": {
+      "error": {
+        "SNIPPET_NOT_FOUND": "Không tìm thấy đoạn mã",
+        "UNAUTHORIZED": "Bạn không có quyền thực hiện hành động này",
+        "SERVER_ERROR": "Lỗi máy chủ, vui lòng thử lại sau"
+      },
+      "success": {
+        "DELETED": "Đã xóa đoạn mã thành công"
+      }
+    }
+  },
+  "updateSnippet": {
+    "title": "Cập nhật Snippet",
+    "description": "Chỉnh sửa snippet hiện có của bạn",
+    "fields": {
+      "title": {
+        "label": "Tiêu đề",
+        "placeholder": "Một tiêu đề ngắn gọn cho snippet của bạn",
+        "error": "Tiêu đề phải có ít nhất 2 ký tự"
+      },
+      "description": {
+        "label": "Mô tả",
+        "placeholder": "Một mô tả ngắn gọn về chức năng của snippet này",
+        "error": "Mô tả có thể dài tối đa 1000 ký tự"
+      },
+      "language": {
+        "label": "Ngôn ngữ",
+        "placeholder": "Chọn một ngôn ngữ",
+        "error": "Ngôn ngữ là bắt buộc"
+      },
+      "code": {
+        "label": "Code",
+        "placeholder": "// Viết code của bạn ở đây",
+        "error": "Code là bắt buộc"
+      },
+      "tags": {
+        "label": "Tags (cách nhau bằng dấu phẩy)",
+        "placeholder": "algorithm, sorting, recursion",
+        "description": "Thêm các thẻ liên quan để giúp người khác tìm thấy snippet của bạn"
+      }
+    },
+    "actions": {
+      "submit": "Cập nhật Snippet",
+      "cancel": "Hủy"
+    },
+    "common": {
+      "error": {
+        "MISSING_FIELDS": "Thiếu trường dữ liệu",
+        "SERVER_ERROR": "Lỗi máy chủ, vui lòng thử lại sau"
+      },
+      "success": "Snippet đã được cập nhật thành công"
+    }
+  },
+  "notFound": {
+    "message": "Không tìm thấy đoạn mã hoặc bạn không có quyền truy cập",
+    "button": "Trở về đoạn mã"
+  },
+  "snippetList": {
+    "title": "Khám phá Snippets",
+    "description": "Khám phá các đoạn mã được chia sẻ bởi cộng đồng",
+    "searchPlaceholder": "Tìm kiếm đoạn mã theo tiêu đề, mô tả hoặc thẻ...",
+    "noSnippets": "Không tìm thấy đoạn mã nào. Hãy là người đầu tiên chia sẻ!",
+    "allLanguage": "Tất cả ngôn ngữ"
+  },
+  "snippetCard": {
+    "complexity": "Độ phức tạp"
+  },
+  "tagList": {
+    "title": "Khám phá thẻ",
+    "description": "Khám phá các đoạn mã theo thẻ",
+    "noTags": "Chưa có thẻ nào. Tạo một đoạn mã để bắt đầu!"
+  },
+  "tagInfo": {
+    "backAction": "Tất cả thẻ",
+    "tag": "Thẻ",
+    "oneTag": "thẻ",
+    "manyTags": "thẻ",
+    "taggedWith": "được gán với",
+    "noSnippets": "Không tìm thấy đoạn mã nào với thẻ này.",
+    "browseAllSnippets": "Duyệt tất cả đoạn mã"
+  },
+  "profile": {
+    "snippets": "Đoạn mã",
+    "uploading": "Đang tải lên...",
+    "updateAvatarSuccessfully": "Tải ảnh đại diện thành công",
+    "editName": "Chỉnh sửa tên",
+    "namePlaceholder": "Nhập tên mới",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "joined": "Tham gia",
+    "notFound": "Không tìm thấy người dùng",
+    "notFoundDesc": "Người dùng bạn tìm kiếm không tồn tại hoặc đã bị xóa.",
+    "browseAllSnippets": "Xem tất cả đoạn mã",
+    "noSnippets": "Chưa có đoạn mã nào.",
+    "snippetsBy": "Đoạn mã của",
+    "common": {
+      "error": {
+        "USER_NOT_FOUND": "Không tìm thấy người dùng",
+        "UNAUTHORIZED": "Bạn không có quyền thực hiện hành động này",
+        "SERVER_ERROR": "Lỗi máy chủ, vui lòng thử lại sau"
+      }
+    }
   }
 }

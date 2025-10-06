@@ -112,7 +112,7 @@ export function Header({ dict }: { dict: any }) {
                   </>
                 ) : (
                   <>
-                    <Button asChild variant="ghost" size="sm">
+                    <Button asChild variant="outline" size="sm">
                       <Link href="/login">{dict.nav.login}</Link>
                     </Button>
                     <Button asChild size="sm">
