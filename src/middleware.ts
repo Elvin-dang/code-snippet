@@ -4,7 +4,9 @@ import Negotiator from "negotiator";
 import { getToken } from "next-auth/jwt";
 import { locales, defaultLocale, detectLocale } from "@/lib/utils";
 
-const publicRoutes = ["/login", "/signup"];
+const publicRoutes = ["/snippets", "/tags", "users"];
+const authRoutes = ["/login", "/signup"];
+const privateRoutes = ["/snippets/new", "/snippets/edit"];
 const nonLocaleRoutes = ["/api", "/trpc"];
 
 function getLocale(request: Request) {
@@ -19,48 +21,55 @@ function getLocale(request: Request) {
   return match(languages, locales, defaultLocale);
 }
 
-const isPublicRoute = (pathname: string) => {
-  const localePrefix = `/${locales.find((l) => pathname.startsWith(`/${l}/`))}`;
-  const pathWithoutLocale = localePrefix ? pathname.replace(localePrefix, "") : pathname;
+const routeMatches = (pathname: string, routes: string[]) =>
+  routes.some((route) => pathname.startsWith(route));
 
-  return publicRoutes.some((route) => pathWithoutLocale.startsWith(route));
-};
+const isPrivateRoute = (pathname: string) =>
+  privateRoutes.some((route) => {
+    if (route === "/snippets/new") return pathname === route;
+    if (route === "/snippets/edit") return /\/snippets\/[^/]+\/edit/.test(pathname);
+    return pathname.startsWith(route);
+  });
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
+  const { pathname, searchParams } = request.nextUrl;
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
-  if (token && isPublicRoute(pathname)) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  if (!token && !isPublicRoute(pathname)) {
-    return NextResponse.redirect(
-      new URL(`/${detectLocale(pathname, locales, defaultLocale)}/login`, request.url)
-    );
-  }
-
-  if (nonLocaleRoutes.some((route) => pathname.startsWith(route))) {
-    return;
-  }
+  if (nonLocaleRoutes.some((r) => pathname.startsWith(r))) return;
 
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
-
-  const cookieLang = request.cookies.get("lang")?.value;
-
-  if (cookieLang && locales.includes(cookieLang) && !pathnameHasLocale) {
-    return NextResponse.redirect(new URL(`/${cookieLang}${pathname}`, request.url));
+  if (!pathnameHasLocale) {
+    const cookieLang = request.cookies.get("lang")?.value;
+    const locale = cookieLang && locales.includes(cookieLang) ? cookieLang : getLocale(request);
+    return NextResponse.redirect(
+      new URL(`/${locale}${pathname}${searchParams ? `?${searchParams}` : ""}`, request.url)
+    );
   }
 
-  const locale = getLocale(request);
-  request.nextUrl.pathname = `/${locale}${pathname}`;
+  const locale = detectLocale(pathname, locales, defaultLocale);
+  const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
 
-  return NextResponse.redirect(request.nextUrl);
+  if (token && routeMatches(pathWithoutLocale, authRoutes)) {
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
+  }
+
+  if (
+    !routeMatches(pathWithoutLocale, privateRoutes) &&
+    !routeMatches(pathWithoutLocale, publicRoutes)
+  ) {
+    return;
+  }
+
+  if (!token && isPrivateRoute(pathWithoutLocale)) {
+    const loginUrl = new URL(`/${locale}/login`, request.url);
+    loginUrl.searchParams.set("callbackUrl", request.nextUrl.pathname + request.nextUrl.search);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return;
 }
 
 export const config = {

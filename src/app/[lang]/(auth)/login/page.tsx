@@ -2,11 +2,18 @@ import { LoginForm } from "@/components/login-form";
 import React from "react";
 import { getDictionary } from "../../dictionaries";
 
-const Page = async ({ params }: { params: Promise<{ lang: "en" | "vi" }> }) => {
+const Page = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ lang: "en" | "vi" }>;
+  searchParams?: Promise<{ [key: string]: string | undefined }>;
+}) => {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const searchParamsResolved = await searchParams;
 
-  return <LoginForm dict={dict} />;
+  return <LoginForm dict={dict} callbackUrl={searchParamsResolved?.callbackUrl} />;
 };
 
 export default Page;

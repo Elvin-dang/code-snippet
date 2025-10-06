@@ -23,8 +23,9 @@ const getFormSchema = (dict: any) =>
 export function LoginForm({
   className,
   dict,
+  callbackUrl,
   ...props
-}: React.ComponentProps<"form"> & { dict: any }) {
+}: React.ComponentProps<"form"> & { dict: any; callbackUrl?: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const formSchema = useMemo(() => getFormSchema(dict), [dict]);
@@ -45,7 +46,7 @@ export function LoginForm({
         password,
       });
       if (response?.ok) {
-        router.push("/");
+        router.push(callbackUrl || "/");
       } else {
         toast.error(response?.error, {
           duration: 4000,
@@ -110,7 +111,12 @@ export function LoginForm({
           <Field>
             <FieldDescription className="text-center">
               {dict.login.actions.dontHaveAccount}{" "}
-              <a href="/signup" className="underline underline-offset-4">
+              <a
+                href={`${
+                  callbackUrl ? `/signup?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/signup"
+                }`}
+                className="underline underline-offset-4"
+              >
                 {dict.login.actions.signup}
               </a>
             </FieldDescription>

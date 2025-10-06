@@ -25,7 +25,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState(true);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const sessionUser = session?.user;
 
   const refreshUser = useCallback(
@@ -84,10 +84,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           setLoading(false);
         }
       }
+      if (status === "unauthenticated") {
+        setUser(null);
+        setLoading(false);
+      }
     };
 
     loadUser();
-  }, [sessionUser]);
+  }, [sessionUser, status]);
 
   return (
     <UserContext.Provider value={{ user, setUser, loading, refreshUser, updateUser }}>
