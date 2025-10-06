@@ -70,7 +70,7 @@ export function TagInfo({ dict, lang }: { dict: any; lang: string }) {
 
         <p className="text-muted-foreground">
           {total} {total === 1 ? dict.tagInfo.oneTag : dict.tagInfo.manyTags}{" "}
-          {dict.tagInfo.taggedWith} "{slug}"
+          {dict.tagInfo.taggedWith} &quot;{slug}&quot;
         </p>
 
         {renderPaginationBar && (

@@ -20,12 +20,7 @@ export function ComplexityBadge({ analysis, showDetails = false, dict }: Complex
   };
 
   const getConfidenceText = (confidence: string) => {
-    return (
-      confidence.charAt(0).toUpperCase() +
-      confidence.slice(1) +
-      " " +
-      dict.complexity.confidenceText
-    );
+    return dict.complexity.confidenceText + " " + dict.complexity.confidence[confidence];
   };
 
   if (!showDetails) {

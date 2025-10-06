@@ -97,7 +97,7 @@
     "title": "Time Complexity Analysis",
     "description": "Automatic estimation based on code patterns",
     "detectedPatterns": "Detected patterns",
-    "confidenceText": "confidence",
+    "confidenceText": "confidence is",
     "constant_time": "Constant time - no loops or recursion detected",
     "nested_loops_quadratic": "Quadratic time - nested loops detected",
     "triple_nested_loops_cubic": "Cubic time - three or more nested loops detected",
@@ -117,9 +117,9 @@
       "none": "No significant patterns detected"
     },
     "confidence": {
-      "high": "High",
-      "medium": "Medium",
-      "low": "Low"
+      "high": "high",
+      "medium": "medium",
+      "low": "low"
     }
   },
   "newSnippet": {

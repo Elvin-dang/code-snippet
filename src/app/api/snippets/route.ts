@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit;
 
     const include = {
-      user: { select: { username: true } },
+      user: { select: { username: true, image: true } },
       language: { select: { name: true, slug: true, icon: true } },
       tags: { select: { tag: true } },
     };

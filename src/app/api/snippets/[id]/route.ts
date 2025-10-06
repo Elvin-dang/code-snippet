@@ -15,6 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         user: {
           select: {
             username: true,
+            image: true,
           },
         },
         language: {

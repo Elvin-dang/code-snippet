@@ -117,9 +117,9 @@
       "none": "Không phát hiện mẫu đáng chú ý"
     },
     "confidence": {
-      "high": "Cao",
-      "medium": "Trung bình",
-      "low": "Thấp"
+      "high": "cao",
+      "medium": "trung bình",
+      "low": "thấp"
     }
   },
   "newSnippet": {
@@ -266,7 +266,7 @@
     "namePlaceholder": "Nhập tên mới",
     "save": "Lưu",
     "cancel": "Hủy",
-    "joined": "Tham gia",
+    "joined": "Tham gia ngày",
     "notFound": "Không tìm thấy người dùng",
     "notFoundDesc": "Người dùng bạn tìm kiếm không tồn tại hoặc đã bị xóa.",
     "browseAllSnippets": "Xem tất cả đoạn mã",

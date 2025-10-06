@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, User } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function SnippetCard({ snippet, dict, lang }: { snippet: any; dict: any; lang: string }) {
   const formatDate = (date: string) => {
@@ -25,12 +26,14 @@ export function SnippetCard({ snippet, dict, lang }: { snippet: any; dict: any; 
         <CardHeader>
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <CardTitle className="text-lg truncate">{snippet.title}</CardTitle>
+              <div className="flex items-center justify-between gap-2">
+                <CardTitle className="text-lg truncate">{snippet.title}</CardTitle>
+                <Badge variant="secondary" className="shrink-0">
+                  {snippet.language.name}
+                </Badge>
+              </div>
               <CardDescription className="line-clamp-2 mt-1">{snippet.description}</CardDescription>
             </div>
-            <Badge variant="secondary" className="shrink-0">
-              {snippet.language.name}
-            </Badge>
           </div>
         </CardHeader>
         <CardContent>
@@ -52,7 +55,12 @@ export function SnippetCard({ snippet, dict, lang }: { snippet: any; dict: any; 
         </CardContent>
         <CardFooter className="text-sm text-muted-foreground flex items-center gap-4">
           <div className="flex items-center gap-1">
-            <User className="h-4 w-4" />
+            <Avatar className="h-5 w-5">
+              <AvatarImage src={snippet.user.image} />
+              <AvatarFallback>
+                <User className="h-4 w-4" />
+              </AvatarFallback>
+            </Avatar>
             <span>{snippet.user.username}</span>
           </div>
           <span>•</span>

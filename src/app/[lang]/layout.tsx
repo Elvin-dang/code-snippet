@@ -4,6 +4,7 @@ import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { NextAuthProvider } from "@/components/providers/next-auth-provider";
 import { UserProvider } from "@/components/providers/user-provider";
+import { icons } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
+    alternates: {
+      canonical: "/",
+    },
     title: {
       default: "CodeSnippet - Share & Discover Code Snippets",
       template: `%s | CodeSnippet`,
@@ -36,7 +41,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     authors: [{ name: "Vinh" }],
     creator: "Vinh",
     publisher: "Vinh",
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
     openGraph: {
       title: "CodeSnippet - Share & Discover Code Snippets",
       description:
@@ -51,6 +55,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title: "CodeSnippet - Share & Discover Code Snippets",
       description:
         "A platform for developers to share, discover, and analyze code snippets with time complexity estimation.",
+    },
+    icons: {
+      icon: [{ url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" }],
+      shortcut: { url: "/favicon.ico" },
+      apple: [
+        {
+          url: "/apple-touch-icon.png",
+          sizes: "120x120",
+          type: "image/png",
+        },
+      ],
     },
   };
 }

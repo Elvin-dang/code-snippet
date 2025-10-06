@@ -26,6 +26,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
   const router = useRouter();
@@ -162,56 +163,61 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
   return (
     <div className="container py-8 max-w-5xl mx-auto p-4">
       <div className="space-y-6">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1 min-w-0">
+        <div className="flex flex-col items-start justify-between gap-4">
+          <div className="flex justify-between flex-1 w-full">
             <h1 className="text-3xl font-bold mb-2">{snippet.title}</h1>
-            <p className="text-muted-foreground">{snippet.description}</p>
+            <div className="flex gap-2 shrink-0">
+              <Button variant="outline" size="sm" onClick={handleCopyRoomLink}>
+                <Share className="h-4 w-4 md:mr-2" />
+                <span className="md:block hidden">{dict.snippet.share}</span>
+              </Button>
+              {isAuthor && (
+                <>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href={`/snippets/${id}/edit`}>
+                      <Edit className="h-4 w-4 md:mr-2" />
+                      <span className="md:block hidden">{dict.snippet.edit}</span>
+                    </Link>
+                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" size="sm">
+                        {deleting ? <Spinner /> : <Trash2 className="h-4 w-4 md:mr-2" />}
+                        <span className="md:block hidden">{dict.snippet.delete}</span>
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>{dict.snippet.confirmDeleteTitle}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {dict.snippet.confirmDeleteMessage}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>{dict.snippet.cancel}</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleDelete}>
+                          {dict.snippet.confirm}
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
+              )}
+            </div>
           </div>
-          <div className="flex gap-2 shrink-0">
-            <Button variant="outline" size="sm" onClick={handleCopyRoomLink}>
-              <Share className="h-4 w-4 md:mr-2" />
-              <span className="md:block hidden">{dict.snippet.share}</span>
-            </Button>
-            {isAuthor && (
-              <>
-                <Button asChild variant="outline" size="sm">
-                  <Link href={`/snippets/${id}/edit`}>
-                    <Edit className="h-4 w-4 md:mr-2" />
-                    <span className="md:block hidden">{dict.snippet.edit}</span>
-                  </Link>
-                </Button>
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button variant="destructive" size="sm">
-                      {deleting ? <Spinner /> : <Trash2 className="h-4 w-4 md:mr-2" />}
-                      <span className="md:block hidden">{dict.snippet.delete}</span>
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>{dict.snippet.confirmDeleteTitle}</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        {dict.snippet.confirmDeleteMessage}
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>{dict.snippet.cancel}</AlertDialogCancel>
-                      <AlertDialogAction onClick={handleDelete}>
-                        {dict.snippet.confirm}
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </>
-            )}
-          </div>
+          <p className="text-muted-foreground">{snippet.description}</p>
         </div>
 
         <Card>
           <CardContent>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <User className="h-4 w-4" />
+                <Avatar className="h-5 w-5">
+                  <AvatarImage src={snippet.user.image} />
+                  <AvatarFallback>
+                    <User className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
                 <Link href={`/profile/${snippet.userId}`} className="hover:text-primary">
                   {snippet.user.username}
                 </Link>
