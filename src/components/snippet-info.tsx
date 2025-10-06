@@ -62,7 +62,7 @@ export function SnippetInfo({ dict, lang }: { dict: any; lang: string }) {
 
   if (fetching) {
     return (
-      <div className="container py-8 max-w-5xl mx-auto space-y-6 animate-pulse">
+      <div className="container py-8 max-w-5xl mx-auto space-y-6 animate-pulse p-4">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0 space-y-2">
             <Skeleton className="h-8 w-3/5 rounded" />

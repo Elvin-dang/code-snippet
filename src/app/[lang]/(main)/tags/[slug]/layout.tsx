@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: tag?.slug,
     description: tag?.name,
-    og: {
+    openGraph: {
       title: tag?.slug,
       description: tag?.name,
       type: "article",
