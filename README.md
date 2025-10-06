@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧩 Code Snippet
 
-## Getting Started
+A modern web platform for developers to **share, discover, and analyze code snippets** with automatic **time complexity detection**, **language-based tagging**, and **user profiles** — built with **Next.js 15** and **Tailwindcss**.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- 🧠 **Time Complexity Analysis** for algorithms
+- 🏷️ **Smart Tagging & Language Categorization**
+- 👤 **User Authentication & Profiles** (NextAuth)
+- 💾 **PostgreSQL Database (via Prisma ORM)**
+- 🌐 **Multilingual Support** (English & Vietnamese)
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer                           | Technology                                                                    |
+| ------------------------------- | ----------------------------------------------------------------------------- |
+| **Framework**                   | [Next.js 15](https://nextjs.org/) (App Router)                                |
+| **Database**                    | [PostgreSQL](https://www.postgresql.org/)                                     |
+| **ORM**                         | [Prisma](https://www.prisma.io/)                                              |
+| **Auth**                        | [NextAuth.js](https://next-auth.js.org/) + [Appwrite](https://appwrite.io/)   |
+| **UI**                          | [Tailwind CSS 4](https://tailwindcss.com/) + [Shacdn](https://ui.shadcn.com/) |
+| **Icons**                       | [Lucide React](https://lucide.dev/)                                           |
+| **Forms**                       | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)     |
+| **Notifications**               | [Sonner](https://sonner.emilkowal.ski/)                                       |
+| **Internationalization (i18n)** | Custom dictionary system (EN/VI)                                              |
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Elvin-dang/code-snippet.git
+cd code-snippet
+```
+
+---
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Configure Environment Variables
+
+Copy the example environment file and update it:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and replace placeholder values with your own credentials:
+
+```bash
+# 🌐 Site Configuration
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+
+# 🔐 NextAuth Configuration
+NEXTAUTH_SECRET="your-secret-key"
+
+# 🗄️ Database (PostgreSQL / Neon)
+DATABASE_URL="postgresql://user:password@host:port/dbname?sslmode=require"
+
+# 🧩 Appwrite Configuration
+NEXT_PUBLIC_APPWRITE_PROJECT_ID="your-appwrite-project-id"
+NEXT_PUBLIC_APPWRITE_PROJECT_NAME="code snippet"
+NEXT_PUBLIC_APPWRITE_ENDPOINT="https://your-appwrite-endpoint.io/v1"
+```
+
+---
+
+### 4. Initialize the Database
+
+Generate Prisma client and apply migrations:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+If you’re setting up the database for the first time, seed initial data:
+
+```bash
+npx prisma db seed
+```
+
+---
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your app in the browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧰 Key Packages
 
-To learn more about Next.js, take a look at the following resources:
+### **Dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `next`, `react`, `react-dom`
+- `prisma`, `@prisma/client`
+- `next-auth`, `appwrite`
+- `tailwindcss`, `radix-ui`, `lucide-react`
+- `react-hook-form`, `zod`
+- `sonner`, `clsx`, `nanoid`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Dev Dependencies**
 
-## Deploy on Vercel
+- `typescript`, `tsx`
+- `eslint`, `eslint-config-next`
+- `@tailwindcss/postcss`
+- `@types/react`, `@types/node`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ❤️ Credits
+
+Built with 💻 by Vinh
